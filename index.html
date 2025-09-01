@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vishnu Priya Mallineni — Portfolio</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Icons + AOS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+
+  <style>
+    :root{
+      --bg:#fdfcfb; --card:#ffffff; --muted:#6b7280; --text:#1f2937;
+      --brand:#6fb3b8; --brand-2:#a3a8d2; --brand-3:#f7b7a3;
+      --border:#e7e9ee; --shadow:0 8px 22px rgba(0,0,0,.06);
+      --radius:14px; --container:1100px; --navh:70px;
+
+      --b-ml:#e7f6f5; --b-nlp:#efe9fb; --b-ts:#fff2e6; --b-aws:#eef6ff; --b-db:#edf7ee;
+    }
+
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans","Helvetica Neue",sans-serif;background:var(--bg);color:var(--text);}
+
+    /* NAV */
+    nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(255,255,255,.9);border-bottom:1px solid var(--border);height:var(--navh);}
+    .nav-container{max-width:var(--container);margin:0 auto;height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 20px;}
+    .logo span{font-weight:700;font-size:1.1rem;color:var(--brand);}
+    .links{display:flex;gap:18px;align-items:center;}
+    .links a{text-decoration:none;font-weight:500;font-size:.95rem;color:var(--text);padding:8px 12px;border-radius:8px;transition:.2s;}
+    .links a:hover{background:#f1fafb;color:#0f5e66;}
+
+    /* HERO */
+    .main-container{max-width:var(--container);margin:40px auto;padding:0 20px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;}
+    .profile-photo{width:100%;max-width:360px;border-radius:20px;box-shadow:var(--shadow);}
+    h1{font-size:clamp(28px,4vw,38px);margin:0 0 12px;line-height:1.2;}
+    h1 span{color:var(--brand);}
+    .no-wrap{white-space:nowrap;}
+    .typewriter{font-weight:600;color:var(--muted);margin:8px 0 16px;}
+    p{line-height:1.7;color:#374151;}
+
+    .social-links{display:flex;gap:14px;margin-top:12px;margin-bottom:20px;}
+    .social-links a{color:#0f5e66;font-size:1.1rem;display:inline-flex;width:42px;height:42px;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:10px;background:#f1fafb;transition:.2s;}
+    .social-links a:hover{background:#e6f6f7;border-color:#bfe7ea;}
+
+    /* Buttons */
+    .btn-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:18px;}
+    .btn-primary, .btn-secondary{
+      display:inline-flex;align-items:center;gap:8px;
+      font-weight:600;border:none;border-radius:10px;padding:12px 18px;cursor:pointer;transition:.2s;
+      text-decoration:none;
+    }
+    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:0 6px 18px rgba(111,179,184,.25);}
+    .btn-primary:hover{filter:brightness(0.95);}
+    .btn-secondary{background:#f1fafb;color:#0f5e66;border:1px solid var(--border);}
+    .btn-secondary:hover{background:#e6f6f7;border-color:#bfe7ea;}
+
+    /* SECTIONS */
+    section{scroll-margin-top:calc(var(--navh) + 20px);}
+    .section{padding:72px 0;}
+    .section .container{max-width:var(--container);margin:0 auto;padding:0 20px;}
+    .section h2{font-size:1.8rem;margin:0 0 18px;background:linear-gradient(90deg,#0f5e66,#6b6fb8);-webkit-background-clip:text;background-clip:text;color:transparent;}
+    .content{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);}
+
+    .content ul{margin:0 0 6px 1.2rem;padding:0;}
+    .content li{margin:.35rem 0;}
+
+    .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);transition:.2s;}
+    .card:hover{transform:translateY(-2px);}
+    .card h3{margin:6px 0 8px;font-size:1.05rem;color:#0f5e66;}
+    .meta{color:var(--muted);font-size:.9rem;margin-bottom:10px;}
+    .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+    .badge{border:1px solid var(--border);color:var(--text);font-size:.8rem;padding:4px 10px;border-radius:999px;background:#f6f7fb;}
+    .badge.ml{background:var(--b-ml);} .badge.nlp{background:var(--b-nlp);} .badge.ts{background:var(--b-ts);} .badge.aws{background:var(--b-aws);} .badge.db{background:var(--b-db);}
+
+    .thumb{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;margin-bottom:10px;border:1px solid var(--border);}
+
+    @media(max-width:920px){
+      .main-container{grid-template-columns:1fr;gap:30px;}
+      .links{display:none;}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo"><span>Vishnu Priya Mallineni</span></div>
+      <div class="links">
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contactme">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section>
+    <div class="main-container">
+      <div>
+        <h1 data-aos="fade-up">Hey, I'm <span class="no-wrap">Vishnu Priya Mallineni</span></h1>
+        <div class="typewriter" data-aos="fade-up" data-aos-delay="100">Data Scientist / AI-ML Engineer</div>
+        <p data-aos="fade-up" data-aos-delay="200">
+          A Computer Science graduate passionate about using data to drive insights and building AI systems that solve real-world problems.
+        </p>
+        <p data-aos="fade-up" data-aos-delay="300">
+          Actively seeking roles in <strong>Data Science</strong> and <strong>AI/ML Engineering</strong>, with strong foundations in programming, machine learning, and cloud technologies.
+        </p>
+
+        <div class="social-links" data-aos="fade-up" data-aos-delay="400">
+          <a href="https://www.linkedin.com/in/vishnu-priya-mallineni" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="mailto:vishnupriyamallineni@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+
+        <!-- Buttons -->
+        <div class="btn-row" data-aos="fade-up" data-aos-delay="520">
+          <a class="btn-primary" href="https://drive.google.com/uc?export=download&id=1T4uNeoWvS6qdIRPWf_0bcd7T97qdcDVR" target="_blank" rel="noopener">
+            <i class="fa-solid fa-download"></i> Download Resume
+          </a>
+          <!-- UPDATED: opens Google Form in new tab -->
+          <a class="btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLScQekIia_LDdzmxOJHAKNevjNDfkG3nHrsfY2hs14Z-VrKPbA/viewform?usp=sharing&ouid=112880071553512636044" target="_blank" rel="noopener" aria-label="Open contact form">
+            <i class="fa-solid fa-paper-plane"></i> Get In Touch
+          </a>
+        </div>
+      </div>
+      <div>
+        <img src="main.png" alt="Profile of Vishnu Priya Mallineni" class="profile-photo" loading="eager" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="container">
+      <h2>Skills</h2>
+      <div class="content">
+        <ul>
+          <li><strong>Programming:</strong> Python, R, Java, C/C++/C#, SQL, MATLAB, Bash, Git, Jupyter</li>
+          <li><strong>ML/AI:</strong> TensorFlow, Keras, PyTorch, Scikit-learn, XGBoost, Random Forest, Deep &amp; Reinforcement Learning</li>
+          <li><strong>Data Science:</strong> Feature Engineering, Statistical Modeling, NLP, Time-Series Forecasting, Experiment Design, A/B Testing</li>
+          <li><strong>Databases &amp; Big Data:</strong> MySQL, PostgreSQL, MongoDB, Hadoop, Spark</li>
+          <li><strong>Visualization:</strong> Matplotlib, Seaborn, Plotly, Tableau, Power BI, Dash</li>
+          <li><strong>Cloud &amp; MLOps:</strong> AWS (EC2, S3, SageMaker), Docker, CI/CD, Model Monitoring</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section">
+    <div class="container">
+      <h2>Education</h2>
+      <div class="grid">
+        <div class="card">
+          <img class="thumb" src="C:\Users\vishn\Pictures\Screenshots\Screenshot 2025-08-31 201522.png" alt="Wright State University logo">
+          <h3>M.S. in Computer Science</h3>
+          <div class="meta">Wright State University · Aug 2023 – Jul 2025</div>
+        </div>
+        <div class="card">
+          <img class="thumb" src="C:\Users\vishn\Pictures\Screenshots\Screenshot 2025-08-31 202025.png" alt="Sree Vidyanikethan Engineering College logo">
+          <h3>B.Tech in Electronics &amp; Communication Engineering</h3>
+          <div class="meta">Sree Vidyanikethan Engineering College · Aug 2019 – May 2023</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section">
+    <div class="container">
+      <h2>Experience</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Graduate Research Assistant — Wright State University</h3>
+          <div class="meta">Aug 2024 – Jul 2025 · Dayton, OH</div>
+          <ul>
+            <li>Built a Python simulation framework for routing in Ad-Hoc Wireless Networks across 10k+ randomized topologies.</li>
+            <li>Engineered datasets capturing SINR, hop-count, bottleneck rate, latency, and energy utilization; automated data quality checks.</li>
+            <li>Designed a greedy routing algorithm with adaptive power allocation, reducing average packet loss by <em>28%</em> vs. baseline.</li>
+            <li>Trained and tuned Random Forest models for QoT classification (97% accuracy) with SHAP-based feature importance analysis.</li>
+            <li>Packaged experiments with Docker &amp; Makefiles; published reproducible reports and visualizations using Plotly.</li>
+            <li>Collaborated with a 4-person team using Git, issue templates, code reviews, and CI for tests and linting.</li>
+          </ul>
+          <div class="badges">
+            <span class="badge ml">Python</span><span class="badge">NumPy</span><span class="badge">Pandas</span>
+            <span class="badge">Scikit-learn</span><span class="badge">Random Forest</span>
+            <span class="badge">Simulation</span><span class="badge">Wireless Networks</span>
+            <span class="badge aws">Docker</span><span class="badge">Plotly</span><span class="badge">SHAP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="grid">
+
+        <div class="card">
+          <h3>MLOps Pipeline for Model Training &amp; Serving</h3>
+          <div class="meta">Ongoing</div>
+          <p>Reusable template that trains, packages, and deploys models with automated evaluation gates.</p>
+          <ul>
+            <li>Data validation (Great Expectations), unit tests (pytest), and CI workflows (GitHub Actions).</li>
+            <li>Dockerized inference with FastAPI; rollouts via blue-green strategy and metrics checks.</li>
+            <li>Model registry + drift monitoring hooks for production feedback loops.</li>
+          </ul>
+          <div class="badges">
+            <span class="badge aws">Docker</span><span class="badge">FastAPI</span><span class="badge">GitHub Actions</span>
+            <span class="badge">Great Expectations</span><span class="badge">Model Registry</span>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h3>Fake News &amp; Misinformation Detection</h3>
+          <div class="meta">Mar 2025 – Jul 2025</div>
+          <p>Multimodal classification combining BERT embeddings with metadata features to detect misinformation.</p>
+          <ul>
+            <li>Processed 50k+ articles; used SMOTE and class-weighted loss to handle imbalance.</li>
+            <li>Achieved 92% ROC-AUC with stacked BERT + XGBoost; calibrated probabilities with Platt scaling.</li>
+            <li>Logged experiments using MLflow; exported confusion matrices and per-topic breakdowns.</li>
+          </ul>
+          <div class="badges">
+            <span class="badge nlp">BERT</span><span class="badge nlp">NLP</span>
+            <span class="badge">XGBoost</span><span class="badge">MLflow</span><span class="badge">SMOTE</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Energy Consumption Forecasting</h3>
+          <div class="meta">Sep 2024 – Jan 2025</div>
+          <p>Hybrid LSTM + ARIMA pipeline to predict electricity demand using IoT and weather data.</p>
+          <ul>
+            <li>Integrated IoT sensor and weather features; added calendar &amp; holiday effects via feature stores.</li>
+            <li>Reduced sMAPE by ~20% against ARIMA/Prophet baselines through ensembling &amp; hyper-parameter tuning.</li>
+            <li>Deployed a lightweight FastAPI service exposing forecast endpoints with caching.</li>
+          </ul>
+          <div class="badges">
+            <span class="badge ts">Time-Series</span><span class="badge ml">TensorFlow</span>
+            <span class="badge">ARIMA</span><span class="badge">Prophet</span><span class="badge">FastAPI</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Customer Churn Prediction &amp; Insights</h3>
+          <div class="meta">Jan 2024 – Apr 2024</div>
+          <p>End-to-end churn prediction on subscription data with actionable retention insights.</p>
+          <ul>
+            <li>Feature engineered tenure, engagement spans, price sensitivity, and ticket sentiment (VADER).</li>
+            <li>Compared LightGBM, CatBoost, and Logistic Regression; delivered lift charts and SHAP-based playbooks.</li>
+            <li>Built a Streamlit dashboard for cohort analysis and what-if simulations.</li>
+          </ul>
+          <div class="badges">
+            <span class="badge">LightGBM</span><span class="badge">CatBoost</span>
+            <span class="badge">Streamlit</span><span class="badge">SHAP</span><span class="badge db">SQL</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications" class="section">
+    <div class="container">
+      <h2>Certifications</h2>
+      <div class="card" style="display:flex; align-items:center; gap:12px;">
+        <img src="C:\Users\vishn\Pictures\Screenshots\Screenshot 2025-08-31 211829.png" alt="AWS Cloud badge" style="width:56px; height:56px; border-radius:10px; border:1px solid var(--border);">
+        <div>
+          <h3 style="margin:0;">AWS Certified Cloud Practitioner</h3>
+          <div class="meta">Amazon Web Services</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contactme" class="section">
+    <div class="container">
+      <h2>Contact</h2>
+      <div class="content" style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a class="btn-primary" href="mailto:vishnupriyamallineni@gmail.com">
+          <i class="fa-solid fa-envelope"></i> Email
+        </a>
+        <a class="btn-secondary" href="https://www.linkedin.com/in/vishnu-priya-mallineni" target="_blank" rel="noopener">
+          <i class="fa-brands fa-linkedin"></i> LinkedIn
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- JS -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>AOS.init({ offset: 0, once: true });</script>
+</body>
+</html>
